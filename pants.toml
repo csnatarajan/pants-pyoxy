@@ -1,0 +1,32 @@
+[GLOBAL]
+pants_version = "2.14.0"
+backend_packages.add = [
+  "pants.backend.python",
+  "pants.backend.python.lint.docformatter",
+  "pants.backend.python.lint.black",
+  "pants.backend.python.lint.flake8",
+  "pants.backend.python.lint.isort",
+  "pants.backend.experimental.python.packaging.pyoxidizer",
+]
+
+[python]
+interpreter_constraints = ["CPython>=3.9"]
+
+[python-repos]
+find_links = ["file://%(pants_distdir)s"]
+path_mappings = ["WHEELS_DIR|%(pants_distdir)s"]
+
+[isort]
+args = "--profile black"
+
+[flake8]
+# 88 is good and reduces conflicts with black.
+# https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#line-length
+args = "--max-line-length=88"
+
+[anonymous-telemetry]
+enabled = false
+
+[source]
+# The Python source root is the repo root. See https://www.pantsbuild.org/docs/source-roots.
+root_patterns = ["/"]
