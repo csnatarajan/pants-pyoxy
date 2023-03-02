@@ -1,12 +1,9 @@
 def make_exe():
     dist = default_python_distribution()
     policy = dist.make_python_packaging_policy()
-#    policy.set_resource_handling_mode("files")
-#    policy.include_classified_resources = True
     policy.allow_files = True
     policy.include_file_resources = True
     policy.file_scanner_emit_files = True
-    policy.file_scanner_classify_files = True
     policy.extension_module_filter = "no-copyleft"
     # Note: Adding this for pydanic and libs that have the "unable to load from memory" error
     # https://github.com/indygreg/PyOxidizer/issues/438
